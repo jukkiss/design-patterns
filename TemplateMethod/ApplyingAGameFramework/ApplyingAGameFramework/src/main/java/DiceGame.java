@@ -40,5 +40,4 @@ public class DiceGame extends Game{
         }
         System.out.println("Player " + (winner + 1) + " wins with a roll of " + highestScore);
     }
-
 }
