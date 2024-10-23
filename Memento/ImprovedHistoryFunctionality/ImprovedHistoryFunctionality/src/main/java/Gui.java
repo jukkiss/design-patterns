@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -45,8 +46,13 @@ public class Gui extends Application {
         Label label = new Label("Press Ctrl-Z to undo, Ctrl-y to redo.");
         label.setPadding(insets);
 
+        Button openHistoryButton = new Button("Open history.");
+        openHistoryButton.setPadding(insets);
+        openHistoryButton.setOnAction(event -> { openHistoryWindow(); });
+
+
         // create a VBox that contains the HBox and the CheckBox
-        VBox vBox = new VBox(hBox, checkBox, label);
+        VBox vBox = new VBox(hBox, checkBox, openHistoryButton, label);
         // call controller when the CheckBox is clicked
         checkBox.setOnAction(event -> {
             controller.setIsSelected(checkBox.isSelected());
@@ -78,5 +84,10 @@ public class Gui extends Application {
         colorBox2.setColor(controller.getOption(2));
         colorBox3.setColor(controller.getOption(3));
         checkBox.setSelected(controller.getIsSelected());
+    }
+
+    //Method to open the history window
+    public void openHistoryWindow() {
+        new HistoryWindow(controller);
     }
 }
