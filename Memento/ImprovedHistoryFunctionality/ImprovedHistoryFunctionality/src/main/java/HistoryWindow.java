@@ -1,6 +1,8 @@
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 public class HistoryWindow {
 
@@ -16,6 +18,14 @@ public class HistoryWindow {
             historyListView.getItems().add("State " + (i + 1));
         }
 
+        // DateTimeFormatter to display the timestamp nicely
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        // Fill ListView with metadata (timestamps of saved states)
+        for (IMemento memento : controller.getHistory()) {
+            String metadata = "Saved at: " + memento.getTimestamp().format(formatter);
+            historyListView.getItems().add(metadata);
+        }
         // Set action to restore state on item click
         historyListView.setOnMouseClicked(event -> {
             int selectedIndex = historyListView.getSelectionModel().getSelectedIndex();
