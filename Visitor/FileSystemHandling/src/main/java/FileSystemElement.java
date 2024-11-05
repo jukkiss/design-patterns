@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
-public class FileSystemElement {
+public interface FileSystemElement {
+    void accept(FileSystemVisitor visitor);
 }
