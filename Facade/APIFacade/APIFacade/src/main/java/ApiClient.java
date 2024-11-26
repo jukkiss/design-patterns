@@ -4,7 +4,6 @@ public class ApiClient {
     public static void main(String[] args) {
         ApiFacade facade = new ApiFacade();
 
-        // Chuck Norris Api
         String jokeUrl = "https://api.chucknorris.io/jokes/random";
         try {
             String joke = facade.getAttributeValueFromJson(jokeUrl, "value");
@@ -13,7 +12,6 @@ public class ApiClient {
             System.err.println("Error fetching joke: " + e.getMessage());
         }
 
-        // Exchange api
         String fxRateUrl = "https://api.exchangerate-api.com/v4/latest/USD";
         try {
             String rate = facade.getAttributeValueFromJson(fxRateUrl, "rates");

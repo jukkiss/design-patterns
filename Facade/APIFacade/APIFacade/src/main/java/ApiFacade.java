@@ -10,17 +10,13 @@ import org.json.simple.parser.ParseException;
 
 public class ApiFacade {
 
-    // Single method to retrieve value from JSON
     public String getAttributeValueFromJson(String urlString, String attributeName)
             throws IllegalArgumentException, IOException {
-        // Fetch JSON response from the API
         String jsonResponse = getJsonFromApi(urlString);
 
-        // Extract the attribute from the JSON
         return extractAttributeFromJson(jsonResponse, attributeName);
     }
 
-    // Method to send HTTP request and get JSON response
     private String getJsonFromApi(String apiUrl) throws IOException {
         URL url = new URL(apiUrl);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -38,7 +34,6 @@ public class ApiFacade {
         }
     }
 
-    // Method to parse JSON and extract the desired attribute
     private String extractAttributeFromJson(String json, String attributeName)
             throws IllegalArgumentException {
         try {
