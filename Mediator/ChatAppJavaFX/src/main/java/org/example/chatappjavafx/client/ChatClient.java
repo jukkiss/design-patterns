@@ -9,9 +9,9 @@ public class ChatClient {
     private String username;
     private ChatMediator mediator;
 
-    private TextArea chatArea; // For displaying messages
-    private TextField messageField; // For entering messages
-    private TextField recipientField; // For selecting a recipient
+    private TextArea chatArea;
+    private TextField messageField;
+    private TextField recipientField;
 
     public ChatClient(String username, ChatMediator mediator, TextArea chatArea, TextField messageField, TextField recipientField) {
         this.username = username;
@@ -20,7 +20,6 @@ public class ChatClient {
         this.messageField = messageField;
         this.recipientField = recipientField;
 
-        // Register this client with the mediator
         mediator.addClient(this);
     }
 
@@ -28,13 +27,12 @@ public class ChatClient {
         return username;
     }
 
-    // Send a message via the mediator
     public void sendMessage() {
         String message = messageField.getText();
         String recipient = recipientField.getText();
 
         if (message.isEmpty() || recipient.isEmpty()) {
-            return; // Avoid sending empty messages
+            return;
         }
 
         mediator.sendMessage(message, username, recipient);
@@ -42,7 +40,6 @@ public class ChatClient {
         messageField.clear();
     }
 
-    // Receive a message from the mediator
     public void receiveMessage(String message, String sender) {
         Platform.runLater(() -> chatArea.appendText(sender + ": " + message + "\n"));
     }
