@@ -1,4 +1,11 @@
-package PACKAGE_NAME;
+public class AdvancedRemote extends BasicRemote {
 
-public class AdvancedRemote {
+    public AdvancedRemote(Device device) {
+        super.device = device;
+    }
+
+    public void mute() {
+        System.out.println("Remote: mute");
+        device.setVolume(0);
+    }
 }

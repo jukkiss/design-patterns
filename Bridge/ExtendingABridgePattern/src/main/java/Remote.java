@@ -1,4 +1,11 @@
-package PACKAGE_NAME;
+public interface Remote {
+    void power();
 
-public class Remote {
+    void volumeDown();
+
+    void volumeUp();
+
+    void channelDown();
+
+    void channelUp();
 }

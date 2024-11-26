@@ -1,4 +1,4 @@
-public class Tv implements Device {
+public class SmartTV implements Device {
     private boolean on = false;
     private int volume = 30;
     private int channel = 1;
@@ -44,10 +44,18 @@ public class Tv implements Device {
         this.channel = channel;
     }
 
+    public void browseInternet() {
+        if (on) {
+            System.out.println("SmartTV: Browsing the internet...");
+        } else {
+            System.out.println("SmartTV: Please turn on the TV first.");
+        }
+    }
+
     @Override
     public void printStatus() {
         System.out.println("------------------------------------");
-        System.out.println("| I'm TV set.");
+        System.out.println("| I'm a SmartTV.");
         System.out.println("| I'm " + (on ? "enabled" : "disabled"));
         System.out.println("| Current volume is " + volume + "%");
         System.out.println("| Current channel is " + channel);
