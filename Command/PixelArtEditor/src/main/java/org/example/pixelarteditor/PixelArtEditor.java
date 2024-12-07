@@ -36,7 +36,6 @@ public class PixelArtEditor extends Application {
 
         Scene scene = new Scene(gridPane, GRID_SIZE * CELL_SIZE, GRID_SIZE * CELL_SIZE);
 
-        // Create commands
         Command moveUp = new MoveCursorUpCommand(this);
         Command moveDown = new MoveCursorDownCommand(this);
         Command moveLeft = new MoveCursorLeftCommand(this);
@@ -44,7 +43,6 @@ public class PixelArtEditor extends Application {
         Command togglePixel = new TogglePixelCommand(this);
         Command generateCode = new GenerateCodeCommand(this);
 
-        // Keyboard controls
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case UP -> moveUp.execute();
@@ -56,12 +54,17 @@ public class PixelArtEditor extends Application {
         });
 
         Button generateButton = new Button("Generate Code");
-        generateButton.setOnAction(e -> generateCode.execute());
+        generateButton.setOnAction(e -> {
+            generateCode.execute();
+            gridPane.requestFocus(); // Return focus to the gridPane
+        });
         gridPane.add(generateButton, 0, GRID_SIZE);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Pixel Art Editor");
         primaryStage.show();
+
+        gridPane.requestFocus();
 
         updateCursor();
     }
@@ -115,7 +118,7 @@ public class PixelArtEditor extends Application {
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
                 if (i == cursorY && j == cursorX) {
-                    grid[i][j].setStroke(Color.RED); // Highlight cursor
+                    grid[i][j].setStroke(Color.RED);
                 } else {
                     grid[i][j].setStroke(Color.BLACK);
                 }
@@ -123,4 +126,3 @@ public class PixelArtEditor extends Application {
         }
     }
 }
-
